@@ -2,7 +2,7 @@
 ### It will then calculate mpg mileage for each leg and for the total trip.
 
 # Obtain starting odometer reading before trip, create variables and set them to zero.
-startOdometer = eval(input("\nPlease enter the starting odometer reading: \n"))
+startOdometer = eval(input("\nPlease enter the starting odometer reading: "))
 odometer = 0
 num = 0
 leg = 0
@@ -12,7 +12,7 @@ fuelUsed = [] # list of fuel used in each leg
 mpgList = [] # list of calculated mpg for each leg
 # If user enters -1 in the starting mileage prompt, program will end.
 if startOdometer == -1:
-    print("\nGood Bye\n")  
+    print("\nGoodbye\n")  
     quit()
 
 print("\nPlease enter your odometer reading and gallons of gas used on each leg of the trip.")
@@ -43,4 +43,6 @@ for i in mpgList:
 if miles or fuelUsed != []:
     mpgTotal = sum(miles) / sum(fuelUsed)
     print("The total mpg for this trip is:", "{:,}".format(round(mpgTotal, 2)), "\n")
-
+else:
+    print("Goodbye")
+    print()
