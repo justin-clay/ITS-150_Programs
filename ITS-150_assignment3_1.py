@@ -11,8 +11,8 @@ def circlePerimeter(radius):
 
 def main():
     circleRadius = eval(input("\nEnter the radius of the circle: "))
-    print("Area of the circle is", circleArea(circleRadius))
-    print("Perimeter of the circle is", circlePerimeter(circleRadius))
+    print("Area of the circle is", round(circleArea(circleRadius), 1))
+    print("Perimeter of the circle is", round(circlePerimeter(circleRadius), 1))
     print()
 
 main()
