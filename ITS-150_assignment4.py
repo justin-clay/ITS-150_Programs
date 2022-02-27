@@ -6,7 +6,6 @@
 ### LeastGrowth.txt that contains the top five for lowest growth
 ### the city name, percentage of growth, and is ordered by growth. 
 
-
 def main():
     citiesList = makeFileList("Cities.txt") # pass filename to function and get usable list back
     popPercentList = makePopPercentList(citiesList) # send citiesList to func and get growthList back
