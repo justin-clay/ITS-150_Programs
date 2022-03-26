@@ -14,9 +14,14 @@ def getDictionary(fileName):
     return degrees
 
 def printSortedDict(dictionary):
-   sortedDegrees = sorted(dictionary.items(), key=lambda k: k[1][0], reverse=True)
-   for degree in sortedDegrees:
-       print(degree[0], "\t", degree[1][0])
+    sortedDegrees = sorted(dictionary.items(), key=lambda k: k[1][0], reverse=True)
+    for degree in sortedDegrees:
+        print(degree[0], histogram(degree[1][0]), degree[1][0])
+
+
+def histogram(input):
+    starCount = round(input / 10000)
+    return "*" * starCount
 
 
 main()
