@@ -33,8 +33,14 @@ def main():
     
 
 def getInput(): # ask user to enter the starting caffeine amount that was in a consumed cup of coffee
-    caffeine = eval(input("\nEnter the amount of caffeine in mg: "))
-    return caffeine
+    while True: # continuous loop
+        userInput = input("\nEnter the amount of caffeine in mg: ") # get caffeine input from user
+        if userInput.isdigit(): # if userInput consists of only whole numbers
+            return int(userInput) # return the integer of userInput
+            break
+        else: # if input is anything other than all numbers
+            print("\nYour entered a non-integer.")
+            print("Please only enter whole numbers. Try again...")
 
 # calculate when caffiene will be less than half of starting at 20% loss per hour
 def caffeineLossHalf(startingCaff):
