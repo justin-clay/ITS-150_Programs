@@ -13,17 +13,20 @@ def main():
     totalMonthlyPayroll = 0 # create a varibale to calculate and store total payroll
     keepGoing = 'Y' # create a keep going flag used in while loop execution
     while keepGoing.capitalize() == 'Y': # as long as keepGoing flag is Y then loop will continue to ask for input
-        name = input("\nEnter employee's name: ")
-        classification = input("Enter employee's classification (Salaried or Hourly): ")
+        name = getInput("\nEnter employee's name: ")
+        classification = getInput("Enter employee's classification (Salaried or Hourly): ")
         if classification.upper() == 'HOURLY': # if employee is hourly ask for hours worked and hourly wage
-            hours = eval(input("Enter the number of hours worked in a month: "))
-            wage = eval(input("Enter hourly wage: "))
+            hours = floatValidation("Enter the number of hours worked in a month: ")
+            wage = floatValidation("Enter hourly wage: ")
             totalEmployees.append(HourlyEmployee(name, wage, hours)) # pass name, wage, and hours to HourlyEmployee class and append object to totalEmployee list
-        if classification.upper() == 'SALARIED': # if salary employee ask for monthly wage 
-            salary = eval(input("Enter monthly salary: "))
+        elif classification.upper() == 'SALARIED': # if salary employee ask for monthly wage 
+            salary = floatValidation("Enter monthly salary: ")
             totalEmployees.append(SalariedEmployee(name, salary))
             salariedEmployees.append(SalariedEmployee(name, salary)) # pass salary to SalariedEmployee class and append object to salariedEmployees list
-        keepGoing = input("Do you want to continue (Y/N)? ")
+        else:
+            print("\nYou entered something other than Salaried or Hourly.")
+            print("Please check the spelling and try again...\n")
+        keepGoing = getInput("Do you want to continue (Y/N)? ")
     print()
     for obj in totalEmployees: # for each object in list, print employee name and monthly salary
         print(str(obj._name) + ": " + str('${:0,.2f}'.format(obj.calculatePay())))
@@ -32,7 +35,33 @@ def main():
     print("Number of salaried employees: ", len(salariedEmployees))
     print("Total monthly payroll: ", '${:0,.2f}'.format(totalMonthlyPayroll))
     print()
+    
+def getInput(userPrompt): # allows user to properly and safely exit with keyboard interupt at any prompt
+    try: 
+        userInput = input(userPrompt) # try the getting the user prompt passed into function
+        return userInput 
+    except KeyboardInterrupt: # if user enters keyboard interupt, safely exit below
+        print("\nProgram stopped by user with Keyboard Interupt.")
+        print("Good Bye\n")
+        quit()
 
+def floatValidation(userPrompt): # confirm input is a number (integer or float) then return float
+    while True: # continuoas loop
+        try: # asks user for input
+            userInput = input(userPrompt)
+        except KeyboardInterrupt: # safely exits if user enter keyboard interupt
+            print("\nProgram stopped by user with Keyboard Interupt.")
+            print("Good Bye\n")
+            quit()
+        try:
+            userInput = float(userInput) # attempts to make user input a float
+            return userInput # if successful, returns the input in float format
+            break # stops the while loop
+        except ValueError: # if input is string or symbols and can't be made a float
+            print("\nInput must be a float or integer.")
+            print("Only enter numbers or a decimal.")
+            print("No letters or symbols. Please try again...\n")
+            
 class Employee: # create parent class that accepts name, wage, and hours worked
     def __init__(self, name, wage, hoursWorked=0):
         self._name = name
