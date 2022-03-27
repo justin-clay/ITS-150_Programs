@@ -76,11 +76,20 @@ class Employee: # create parent class that accepts name, wage, and hours worked
 
 class SalariedEmployee(Employee):
 
+    def setSalary(self, monthlyRate):
+        self._salary = monthlyRate
+
     def calculatePay(self): # calculate and return the monthly salary of employee
         self._salary = self._wage
         return self._salary
 
 class HourlyEmployee(Employee):
+
+    def setWage(self, hourlyWage):
+        self._wage = hourlyWage
+
+    def setHours(self, hoursWorked):
+        self._hours = hoursWorked
 
     def calculatePay(self): # calculate and return the monthly salary of salaried employees
         self._salary = self._wage * self._hours
