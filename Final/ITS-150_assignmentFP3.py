@@ -33,7 +33,7 @@ def getDictionary(fileName):
 def printSortedDict(dictionary):
     sortedDegrees = sorted(dictionary.items(), key=lambda k: k[1][0], reverse=True) # sort dictionary degrees in 1981 using lambda function
     for degree in sortedDegrees: # for each degree in sorted dict, print degree name, histogram, and amount of degrees
-        print(degree[0], histogram(degree[1][0]), degree[1][0])
+        print(degree[0], histogram(degree[1][0]), "{:,}".format(degree[1][0]))
 
 
 def histogram(input): # will pass in number of degrees when function is called
